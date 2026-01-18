@@ -1,217 +1,242 @@
 # Implementation Plan
 
-## [x] Phase 1: HTML Structure and Basic Layout
+## [ ] Phase 1: HTML Structure and Base Layout
 
-**Goal:**  Create the foundational HTML structure with semantic markup and basic page layout
+**Goal:**  Create the complete HTML structure with semantic markup and establish the basic page layout with CSS reset and container styling.
 
-**Files:** `index.html` (create)
+**Files:** Create `index.html`, Create `styles.css`
 
 **Tasks:**
-- Create HTML5 document structure with proper doctype and meta tags
-- Add viewport meta tag for mobile responsiveness
-- Create main container element centered on page
+- Create HTML5 boilerplate with proper doctype, lang attribute, meta viewport tag
+- Add link to external stylesheet
+- Create main container div centered on page
 - Add app title heading
-- Create input area with text field and "Add" button
-- Create empty task list container element
-- Add empty state message element
+- Create input area with text field and Add button
+- Create empty task list container
+- Create empty state message element
+- Set up CSS reset (box-sizing, margin/padding reset)
+- Style page background and container
 
 **Acceptance Criteria:**
-- HTML5 doctype is present
-- Document includes `<meta name="viewport" content="width=device-width, initial-scale=1.0">`
-- Page has a centered container with max-width 600px
-- Heading displays "Todo" or similar app title (24px, font-weight 600)
-- Text input field has placeholder text
-- "Add" button is adjacent to input field
-- Empty `<ul>` or container exists for task list
-- Empty state message element exists with text "No tasks yet. Add one above!"
-- Font family is set to `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`
-
-## [x] Phase 2: Core CSS Styling
-
-**Goal:**  Apply the complete visual design including colors, typography, spacing, and component styles
-
-**Files:** `index.html` (modify - add `<style>` block or inline styles)
-
-**Tasks:**
-- Style page background and container card
-- Style typography (headings, body text)
-- Style input field with focus states
-- Style Add button with hover states
-- Style task list container
-- Add responsive styles for mobile
-
-**Acceptance Criteria:**
+- Page has `<!DOCTYPE html>` declaration and `<html lang="en">`
+- Meta viewport tag present: `<meta name="viewport" content="width=device-width, initial-scale=1.0">`
 - Page background color is #f5f5f5
-- Container background is #ffffff with border-radius 8px
-- Container has box-shadow: 0 1px 3px rgba(0,0,0,0.1)
-- Container padding is 24px on sides, 48px on top
+- Container has white background (#ffffff), max-width 600px, centered horizontally
+- Container has border-radius 8px and box-shadow 0 1px 3px rgba(0,0,0,0.1)
+- Container padding: 24px sides, 48px top
+- Font family is `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`
 - Base font size is 16px with line-height 1.5
-- Primary text color is #1a1a1a
-- Input field has border: 1px solid #e0e0e0, border-radius 6px, padding 12px 16px
-- Input focus state has border-color #2563eb, box-shadow 0 0 0 3px rgba(37,99,235,0.1)
-- Add button has background #2563eb, color white, border-radius 6px, padding 12px 16px
-- Add button hover state has background #1d4ed8
-- Button text is 14px, font-weight 500
-- Space between input area and task list is 24px
-- Empty state message is 14px, color #666666, italic
-- Layout works on screens as narrow as 320px
+- App title is 24px, font-weight 600, color #1a1a1a
+- Page displays correctly when opened directly as a file (no server)
 
-## [x] Phase 3: Task Data Model and localStorage
+## [ ] Phase 2: Input Area Styling
 
-**Goal:**  Implement data persistence layer with localStorage read/write operations
+**Goal:**  Style the task input field and Add button with proper spacing, colors, and hover/focus states.
 
-**Files:** `index.html` (modify - add `<script>` block)
+**Files:** Modify `styles.css`
 
 **Tasks:**
-- Define task data structure (id, text, completed, createdAt)
-- Create function to generate unique IDs
-- Create function to save tasks array to localStorage
-- Create function to load tasks array from localStorage
-- Handle case where localStorage is unavailable
-- Initialize tasks array on page load
+- Style input field with proper dimensions and borders
+- Add focus states with accent color
+- Style Add button with accent color and hover state
+- Layout input and button in a row with proper spacing
+- Ensure 24px space between input area and task list area
 
 **Acceptance Criteria:**
-- Each task object has: id (unique string), text (string), completed (boolean), createdAt (timestamp)
-- Tasks are stored in localStorage under a consistent key (e.g., "todos")
-- Loading tasks from localStorage returns an empty array if no data exists
-- Saving tasks serializes the array to JSON
-- If localStorage is unavailable, an error message is displayed to the user
-- Tasks array is populated from localStorage when page loads
+- Input field has border: 1px solid #e0e0e0
+- Input field has border-radius 6px
+- Input field has padding 12px 16px
+- Input field on focus: border-color #2563eb, no outline, box-shadow 0 0 0 3px rgba(37,99,235,0.1)
+- Add button has background #2563eb, color white, border none
+- Add button has border-radius 6px, padding 12px 16px
+- Add button text is 14px, font-weight 500
+- Add button has cursor: pointer
+- Add button on hover: background #1d4ed8
+- 24px vertical space between input area and task list section
+- Input field takes remaining width, button sized to content
 
-## [x] Phase 4: Add Task Functionality
+## [ ] Phase 3: Task Item Styling
 
-**Goal:**  Enable users to create new tasks via input field and button
+**Goal:**  Create CSS for task items including checkbox, text, delete button, and completed state styling.
 
-**Files:** `index.html` (modify - extend `<script>` block)
+**Files:** Modify `styles.css`
+
+**Tasks:**
+- Style task item container with flexbox layout
+- Style custom checkbox (unchecked and checked states)
+- Style task text area
+- Style delete button with hover state
+- Style completed task appearance
+- Add spacing between task items
+
+**Acceptance Criteria:**
+- Task item has background #ffffff, border 1px solid #e0e0e0, border-radius 6px
+- Task item has padding 12px 16px, display flex, align-items center
+- Gap between task item elements: 12px
+- Space between task items: 8px
+- Checkbox is 20px × 20px with border 2px solid #e0e0e0, border-radius 4px
+- Checkbox has cursor: pointer
+- Checked checkbox has background #16a34a, border-color #16a34a, displays white checkmark
+- Task text is 16px, font-weight 400, color #1a1a1a, flex: 1
+- Delete button has background transparent, color #666666, border none
+- Delete button has padding 8px, border-radius 4px, cursor pointer
+- Delete button on hover: background #fee2e2, color #dc2626
+- Completed task text has color #666666, text-decoration line-through, opacity 0.7
+- Minimum touch target size of 44px for checkbox and delete button
+
+## [ ] Phase 4: Empty State and Responsive Design
+
+**Goal:**  Style the empty state message and ensure responsive behavior on mobile and desktop.
+
+**Files:** Modify `styles.css`
+
+**Tasks:**
+- Style empty state message
+- Add responsive styles for mobile (320px minimum width)
+- Ensure scrolling works when many tasks present
+- Verify touch-friendly sizing
+
+**Acceptance Criteria:**
+- Empty state message is 14px, color #666666, font-style italic
+- Empty state is visible when no tasks, hidden when tasks exist
+- Layout works correctly at 320px viewport width
+- Layout works correctly on desktop widths
+- Task list scrolls when content exceeds viewport height
+- All interactive elements (buttons, checkboxes) have minimum 44px touch target
+
+## [ ] Phase 5: JavaScript - Data Model and localStorage
+
+**Goal:**  Implement the data model for tasks and localStorage persistence functions.
+
+**Files:** Create `app.js`, Modify `index.html` (add script tag)
+
+**Tasks:**
+- Define task data structure (id, text, completed, order)
+- Implement function to generate unique IDs
+- Implement function to save tasks to localStorage
+- Implement function to load tasks from localStorage
+- Handle localStorage unavailability with error message
+- Initialize app by loading saved tasks on page load
+
+**Acceptance Criteria:**
+- Each task has: unique id, text content, completed boolean, creation order number
+- Tasks are saved to localStorage as JSON under a consistent key
+- Tasks are loaded from localStorage on page load
+- If localStorage is unavailable, a user-friendly error message displays
+- Data persists after page refresh
+- Console shows no errors when localStorage operations succeed
+
+## [ ] Phase 6: JavaScript - Add Task Functionality
+
+**Goal:**  Implement adding new tasks via input field with Enter key and Add button.
+
+**Files:** Modify `app.js`
 
 **Tasks:**
 - Add event listener for Add button click
 - Add event listener for Enter key in input field
-- Create function to add new task to array
-- Validate that input is not empty/whitespace
+- Implement task creation logic
+- Validate that empty submissions are ignored
 - Clear input field after successful add
 - Save to localStorage after adding
-- Re-render task list after adding
+- Render the new task in the list
 
 **Acceptance Criteria:**
-- Clicking Add button creates a new task with the input text
-- Pressing Enter in the input field creates a new task
-- Empty or whitespace-only input is ignored (no task created)
-- Input field clears after successfully adding a task
+- Pressing Enter in input field adds the task
+- Clicking Add button adds the task
+- Empty or whitespace-only input is ignored (no blank tasks created)
+- Input field clears after successful task addition
 - New tasks appear at the bottom of the list
-- New tasks are saved to localStorage immediately
-- Input field receives focus after adding a task
+- Task is immediately saved to localStorage
+- Empty state message disappears when first task is added
 
-## [x] Phase 5: Render Task List
+## [ ] Phase 7: JavaScript - Render Tasks and Toggle Complete
 
-**Goal:**  Display tasks from the data array in the UI with proper styling
+**Goal:**  Implement task list rendering and checkbox toggle functionality.
 
-**Files:** `index.html` (modify - extend styles and script)
-
-**Tasks:**
-- Create function to render all tasks to the DOM
-- Generate task item HTML with checkbox, text, and delete button
-- Apply task item container styles
-- Apply checkbox styles
-- Apply delete button styles
-- Show/hide empty state based on task count
-
-**Acceptance Criteria:**
-- Each task displays in a container with background #ffffff, border 1px solid #e0e0e0, border-radius 6px
-- Task items have padding 12px 16px
-- Space between task items is 8px
-- Each task shows: checkbox (left), text (middle, flex: 1), delete button (right)
-- Checkbox is 20px × 20px with border 2px solid #e0e0e0, border-radius 4px
-- Delete button has color #666666, padding 8px, border-radius 4px
-- Delete button shows × symbol or trash icon
-- Gap between task elements is 12px
-- Empty state message shows when task list is empty
-- Empty state message hides when tasks exist
-- Long task text wraps to multiple lines without overflow
-- Task text displays special characters and emojis correctly (HTML escaped)
-
-## [x] Phase 6: Complete Task Functionality
-
-**Goal:**  Allow users to toggle task completion status with visual feedback
-
-**Files:** `index.html` (modify - extend styles and script)
+**Files:** Modify `app.js`
 
 **Tasks:**
-- Add click event listener to checkbox elements
-- Create function to toggle task completed status
-- Update localStorage when completion changes
-- Apply completed task visual styles
-- Style checked checkbox state
+- Implement function to render all tasks from data
+- Create task item HTML elements dynamically
+- Add event listeners for checkbox clicks
+- Implement toggle complete functionality
+- Update visual state when task is completed/uncompleted
+- Save to localStorage after toggling
 
 **Acceptance Criteria:**
+- All saved tasks render on page load in correct order
+- Each task displays checkbox, text content, and delete button
 - Clicking checkbox toggles task between complete and incomplete
-- Completed tasks have text color #666666, text-decoration line-through, opacity 0.7
-- Checked checkbox has background #16a34a, border-color #16a34a, displays white checkmark
-- Completion state persists after page refresh
-- Completed tasks remain visible in the list (not hidden or removed)
-- Checkbox has cursor: pointer
+- Completed tasks show strikethrough text, #666666 color, and 0.7 opacity
+- Completed tasks remain visible in the list (not hidden)
+- Completion state saves immediately to localStorage
+- Checkbox shows green (#16a34a) background with white checkmark when checked
 
-## [x] Phase 7: Delete Task Functionality
+## [ ] Phase 8: JavaScript - Delete Task Functionality
 
-**Goal:**  Allow users to permanently remove tasks from the list
+**Goal:**  Implement task deletion with immediate removal and persistence.
 
-**Files:** `index.html` (modify - extend styles and script)
-
-**Tasks:**
-- Add click event listener to delete button elements
-- Create function to remove task from array by ID
-- Update localStorage when task is deleted
-- Re-render list after deletion
-- Style delete button hover state
-
-**Acceptance Criteria:**
-- Clicking delete button removes the task immediately (no confirmation)
-- Deleted task disappears from the list
-- Deletion persists after page refresh
-- Delete button hover state has background #fee2e2, color #dc2626
-- If last task is deleted, empty state message appears
-
-## [x] Phase 8: Keyboard Navigation and Accessibility
-
-**Goal:**  Ensure the app is fully keyboard accessible with visible focus states
-
-**Files:** `index.html` (modify - extend styles)
+**Files:** Modify `app.js`
 
 **Tasks:**
-- Ensure all interactive elements are focusable via Tab
-- Add visible focus indicators to all interactive elements
-- Ensure checkbox is keyboard accessible
-- Ensure delete button is keyboard accessible
-- Add appropriate ARIA labels if needed
-- Ensure minimum touch target size
+- Add event listeners for delete button clicks
+- Implement delete task logic
+- Remove task from DOM
+- Remove task from data array
+- Save updated list to localStorage
+- Show empty state if last task deleted
 
 **Acceptance Criteria:**
-- Tab key navigates through: input field → Add button → each task's checkbox → each task's delete button
-- All focused elements have visible focus indicator (outline or box-shadow)
-- Checkbox can be toggled with keyboard (Space or Enter when focused)
-- Delete button can be activated with keyboard (Enter when focused)
-- All clickable elements have cursor: pointer
-- Touch targets are minimum 44px in their tappable dimension
-- Input field has visible focus state with border-color #2563eb
+- Clicking delete button removes the task immediately
+- No confirmation dialog appears
+- Task is removed from localStorage
+- If all tasks are deleted, empty state message reappears
+- Delete works correctly for any task in the list
 
-## [x] Phase 9: Final Polish and Edge Cases
+## [ ] Phase 9: Edge Cases and Polish
 
-**Goal:**  Handle edge cases and ensure robust behavior across scenarios
+**Goal:**  Handle edge cases including long text, special characters, many tasks, and keyboard accessibility.
 
-**Files:** `index.html` (modify - extend script)
+**Files:** Modify `styles.css`, Modify `app.js`
 
 **Tasks:**
-- Test and handle extremely long task text (word-wrap)
-- Test performance with 100+ tasks
-- Ensure HTML special characters display as text, not rendered
-- Test localStorage unavailable scenario shows error
-- Verify all functionality works when file is opened directly (file:// protocol)
-- Final cross-browser testing verification
+- Ensure long task text wraps correctly without overflow
+- Verify special characters and emojis display correctly
+- Ensure HTML characters display as text, not rendered HTML
+- Test and verify performance with 100+ tasks
+- Add visible focus indicators for keyboard navigation
+- Ensure Tab key navigates between interactive elements
 
 **Acceptance Criteria:**
-- Task text with 500+ characters wraps properly and doesn't break layout
-- App remains responsive with 100 tasks in the list
-- Text containing `<script>`, `&`, `<`, `>` displays as literal text
-- If localStorage throws an error, user sees a friendly error message
-- App functions correctly when opened via file:// URL (no server)
-- All features work in Chrome, Firefox, Safari, and Edge
+- Long task text wraps to multiple lines without horizontal overflow
+- Emojis display correctly in task text
+- HTML characters like `<script>` display as literal text, not executed
+- Typing `<b>test</b>` shows the literal text, not bold text
+- App remains responsive with 100+ tasks in the list
+- Tab key moves focus between input, Add button, checkboxes, and delete buttons
+- Visible focus ring appears on all interactive elements when focused via keyboard
+- Focus ring uses accent color #2563eb
+
+## [ ] Phase 10: Final Integration and Testing
+
+**Goal:**  Verify all components work together and meet all success criteria.
+
+**Files:** All files (final review)
+
+**Tasks:**
+- Test complete user flow: add, complete, uncomplete, delete
+- Verify persistence across page refresh
+- Test on mobile viewport sizes
+- Verify file:// protocol works (no server required)
+- Cross-browser spot check (Chrome, Firefox, Safari, Edge)
+
+**Acceptance Criteria:**
+- Users can add new tasks by typing and pressing Enter
+- Tasks appear in a vertical list with checkboxes
+- Clicking checkbox marks task complete with strikethrough, #666666 color, 0.7 opacity
+- Each task has working delete button (× or trash icon)
+- All data persists after page refresh (close and reopen browser)
+- Interface is clean and usable on mobile (320px+) and desktop
+- App works when opened directly as file:// in browser (no server)
+- No console errors during normal operation
